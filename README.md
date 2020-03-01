@@ -3,5 +3,6 @@ This program crawls the Park Place Porsche Dallas site and extracts the informat
 
 Run the spider in this program by executing in the command line
 scrapy crawl new_porsche_spidey
+Make sure to change to the Porsche folder directory first
 
-Make sure to delete the contents of Porsche.csv before running the program or the contents with be duplicated.
+Make sure to delete the contents of Porsche.csv before running the program or the contents with be duplicated

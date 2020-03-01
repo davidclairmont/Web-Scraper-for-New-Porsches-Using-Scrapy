@@ -33,6 +33,7 @@ class NewPorscheSpider(scrapy.Spider):
         name = "".join(names)
         ## does checks for the description fields, some contain only 3 fields, some 5, some 6, and most contain 7
         CHECK = response.xpath('//dd[@class="col-xs-7 p-0"]/span/text()').extract()
+        
         if len(CHECK) == 3:
             exterior = CHECK[0]
             interior = CHECK[1]
@@ -69,7 +70,9 @@ class NewPorscheSpider(scrapy.Spider):
             engine = CHECK[6]
 
         ## extract info that is always on a car page
-        price = response.xpath('//span[@class="price-value"]/text()')[0].extract()
+        if len(response.xpath('//span[@class="price-value"]/text()').extract()) == 0:
+            price = 'N/A'
+        else: price = response.xpath('//span[@class="price-value"]/text()')[0].extract()
         phone_number = response.xpath('//span[@data-phone-ref="GROUP_SALES"]/text()')[0].extract()
         location = response.xpath('//div[@class="d-sm-inline mr-5"]/strong/text()')[0].extract()
         stock_number = response.xpath('//ul[@class="additional-details list-inline my-0 font-weight-normal ddc-font-size-small text-muted"]/li/text()')[4].extract()
